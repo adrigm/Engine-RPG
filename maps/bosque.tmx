@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="32" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="campamento" tilewidth="32" tileheight="32">
+  <image source="../../engine/graphics/tilesets/campamento.png" trans="ff00ff"/>
+  <tile id="89">
+   <properties>
+    <property name="block" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="161" name="config" tilewidth="32" tileheight="32">
+  <image source="../resources/graphics/config.png"/>
+ </tileset>
+ <layer name="Layer 1" width="50" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwEoavw/cuux1Bw1VRVVVVVVR896w5h+QAZAAA=
+  </data>
+ </layer>
+ <layer name="Layer 2" width="50" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC8WYyVIUQRCG+yWM4IKEeJAlCBG4CMimorK5gCA7rwHIAZADqAdBDiy+q39HTAVpRm7VPYN/xBcz051dlZWTWdVVs0VRzBWy3oEZMEtsJsEUeAlegRdgDIyDCaWdUvNgAbwHHwy7qloES8q9j+ATs+Fjew2mwRvw1ujnM1gGK+BLhn8djc/nYBiMgFHBbh1sKLarYI3Z8LFF47wJtsA22CHX28l3y1eeB/yZiC0VH1skzl4sI/1LOU6fidiW6ihkaXGO+hftX8px+kzEtq4s/6L9SzlOn4nYlmovYurK9I/aW/1rSs/ch6r4lyuv9iy1ke/RWm6VvNpL8vyM1nKu6Pxi5bZXe0men9FajsiLmXRfm5va2G/Pz2bOdV7MpPvR2vP8bGYtezHT7kdq9D7mnCQvZtr9VtRonfnLi5l2v5k1mtSq+ctS3Rp9IFzTYrML9sA++AoOKvSnyfofeX48Ap0NHhttarE5BEfgGHwDJ/XdF/0sRedcnh/doKdBL7Hj49NicwrOwHfwA/w0/LDE14Xc9U0bB73eV8j/1UPwC5yDC/AbXAb98JS7vj0DAw0Gi7sYlteH2Bh5jMtxXIFrcANuwR/HD2v/T9uvs755OSfF+AlrI/3W/LD2/7T9Ouubl3NSjLVxaH5Y+3/afo54bXk5J8VYG4cma/9P2/fOnSxVXXdLPQ32Ye3/afveudP/3h9FpZ07pX2zNh/SPY12lsLVn+3dvyr70eLqne+14t1Leo+JSosrzTtprJF3Ly1GOTnpvVckReIqjZXWkrYmaTHKWaOjtjyu0rmoN1ZtTdKey8lJzZafLfA5UDoX9XJIW5O053L2A1X3Dmn8fwEusCiLABkAAA==
+  </data>
+ </layer>
+ <layer name="Layer 3" width="50" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC9WXO27DMAyGiRwh6RTkIn0sTbOk7dLHkrb3P0cpBAYIQqL4ku18AAcBlkT+lkgK4Da5Q9uS8QPaI9rTMu64OaDt4RpP4Yj2gnYyrHEP64h/B9dYCq9ob2jvhvnPIMfP/3kErWafaF9o34a5Z5Dj5/88Ates5dsP2i/anzCX8wH1+Cn0n0fgmvV8k+ZyLlCPv0b0LnHNer5JcyNY9KvBNbP4ZtG7h6SfJx/0fMvMMRRJv8x8MHLNQk+/rHyQteYctZHvQccZ6xW093k6v55zzPegYw81n7X5cDq/mnPM9eJ70HELSa+az9p8OK1bYuidY64X34OOW0h61XzW5mpLPuF68T3oWKKlV7S+7JTfZdbjJcmsx2vDmufW8lbiWOt1tL8biaVeW/rjDEb9/7lzhfbdR9H0JXPnCs+7r9WXjOrdNXjefa2+JNq7R3TwvPukviTSu2e+YTTnWtuXeBjxLoqydC3cJK0zohZ671BE0xG10HuHIpqOqoWeO9TT9B8IxaW9ABkAAA==
+  </data>
+ </layer>
+ <objectgroup name="Eventos" width="50" height="32">
+  <object name="Heroe" type="infoplayer" x="556" y="531">
+   <properties>
+    <property name="charaset" value="chara.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="config" width="50" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YSw7AIAhETe9/6G6N8QcCM9i+pAtTCwP4CS3lh4ln4/1qjsRXa8vKtgbL2JhgiItBwy4SraO5UbFq8hpZh5O6e3+LWo+Z9kIPtHZk/tCxS7HUm2XdZtHJxCpnnjmNqFfr49Qn6xq7UZd3v9E+WttIrOJAU2uPjsO6t52NT21H9hejsZeO3lltYXM2RqG9dyX6Zz4YzwqEJo0/Td8d+X9Nitde/gqMeykbo7Pu1ry+CxNEQQAZAAA=
+  </data>
+ </layer>
+ <layer name="priority" width="50" height="32">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VMQoAIAxD0d7/KI6eUIQK4iRS0Mb/IIuToVjNdFVPZgodAJxTeP/VYndZ8axnrysbyUKhQ6fQAQBW0f/uLQo95vtn7jFknwcAAPhTA3WupQAAGQAA
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,168 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+# Módulos
+import base64
+import gzip
+import StringIO
+from xml.dom import minidom, Node
+
+from constants import *
+from images import load_image
+
+# Constantes
+
+# Clases
+# ---------------------------------------------------------------------
+
+class Map:
+	def __init__(self, name):
+		self.name = name
+		self.layers = []
+		self.events = []
+		
+		self.load_map()
+		
+		size_tiles = self.size_tiles
+		size_map = self.size_map
+		
+		self.tileset = cut_tileset("resources/graphics/tilesets/"+self.name_tileset, self.size_tiles)
+		
+		self.create_map()
+		
+	# Convierte coordenadas globales a unidades de mapa
+	def convert_unit(self, pos):
+		f = pos[0]/self.size_tiles[1]
+		c = pos[1]/self.size_tiles[0]
+		return [f, c]
+		
+	# Extrae valores mapa desde XML.	
+	def load_map(self):
+		xmlMap = minidom.parse("maps/"+self.name)
+		mainNode = xmlMap.childNodes[0]
+		
+		# Tamaño mapa
+		self.width = int(mainNode.attributes.get("width").value)
+		self.height = int(mainNode.attributes.get("height").value)
+		self.size_map = (self.width, self.height)
+		
+		for i in range(len(mainNode.childNodes)):
+			if mainNode.childNodes[i].nodeType == 1:
+				if mainNode.childNodes[i].nodeName == "tileset":
+					width = mainNode.childNodes[i].attributes.get("tilewidth").value
+					height = mainNode.childNodes[i].attributes.get("tileheight").value
+					name = mainNode.childNodes[i].childNodes[1].attributes.get("source").value
+					name = extract_name(name)
+					self.name_tileset = name
+					self.size_tiles = (int(width), int(height))
+				if mainNode.childNodes[i].nodeName == "layer":
+					layer = mainNode.childNodes[i].childNodes[1].childNodes[0].data.replace("\n", "").replace(" ", "")
+					layer = decode(layer) # Decodifica la lista
+					layer = convert(layer, self.width) # Convierta en array bidimensional
+					self.layers.append(layer)
+				if mainNode.childNodes[i].nodeName == "objectgroup":
+					for j in range(len(mainNode.childNodes[i].childNodes)):
+						event = {}
+						if mainNode.childNodes[i].childNodes[j].nodeType == 1:
+							for attrib in mainNode.childNodes[i].childNodes[j].attributes.keys():
+								if attrib == 'name' or attrib == 'type':
+									event[attrib] = mainNode.childNodes[i].childNodes[j].attributes.get(attrib).value
+								else:
+									event[attrib] = int(mainNode.childNodes[i].childNodes[j].attributes.get(attrib).value)
+							f = event['y']
+							c = event['x']
+							event['pos'] = self.convert_unit((f, c))
+							del event['x']
+							del event['y']
+						if mainNode.childNodes[i].childNodes[j].childNodes:
+							for k in range(len(mainNode.childNodes[i].childNodes[j].childNodes[1].childNodes)):
+								if mainNode.childNodes[i].childNodes[j].childNodes[1].childNodes[k].nodeType == 1:
+									key = mainNode.childNodes[i].childNodes[j].childNodes[1].childNodes[k].attributes.get('name').value
+									value = mainNode.childNodes[i].childNodes[j].childNodes[1].childNodes[k].attributes.get('value').value
+									event[key] = value
+						if event != {}:
+							events.append(event)
+	
+	# Crea el mapa.			
+	def create_map(self):
+		self.map = self.layers
+		for i in range(len(self.layers)):
+			for f in range(self.height):
+				for c in range(self.width):
+					if self.layers[i][f][c]:
+						self.map[i][f][c] = self.tileset[self.layers[i][f][c]]
+					else:
+						self.map[i][f][c] = None
+						
+	def dibujar_mapa(self, screen):
+		for i in range(len(self.layers)):
+			for f in range(self.height):
+				for c in range(self.width):
+					if self.map[i][f][c]:
+						screen.blit(self.map[i][f][c], (self.size_tiles[0]*c, self.size_tiles[1]*f))
+
+# ---------------------------------------------------------------------
+
+# Funciones
+# ---------------------------------------------------------------------
+
+# Decodifica una cadena en base64 y luego la descomprime.
+def decode(cadena):
+	# Decodificar.
+	cadena = base64.decodestring(cadena)
+	
+	# Descomprimir.
+	copmressed_stream = StringIO.StringIO(cadena)
+	gzipper = gzip.GzipFile(fileobj=copmressed_stream)
+	cadena = gzipper.read()
+	
+	# Convertir.
+	salida = []
+	for idx in xrange(0, len(cadena), 4):
+		val = ord(str(cadena[idx])) | (ord(str(cadena[idx + 1])) << 8) | \
+		(ord(str(cadena[idx + 2])) << 16) | (ord(str(cadena[idx + 3])) << 24)
+		salida.append(val)
+		
+	return salida
+
+# Convierta una array unidimensional en una bidimensional.
+def convert(lista, col):
+	nueva = []
+	for i in range(0, len(lista), col):
+		nueva.append(lista[i:i+col])
+	return nueva
+
+# Extra el name de un archivo de una ruta.	
+def extract_name(ruta):
+	a = -1
+	for i in range(len(ruta)):
+		if ruta[i] == "/" or ruta[i] == "\\":
+			a = i
+	if a == -1:
+		return ruta
+	return ruta[a+1:]
+
+# Corta un tilest y lo almacena en un array unidimensional.  
+def cut_tileset(ruta, (w, h)):
+	image = load_image(ruta, True)
+	rect = image.get_rect()
+	col = rect.w / w
+	fil = rect.h / h
+	sprite = [None]
+		
+	for f in range(fil):
+		for c in range(col):
+			sprite.append(image.subsurface((rect.left, rect.top, w, h)))
+			rect.left += w
+		rect.top += h
+		rect.left = 0
+		
+	return sprite
+
+# ---------------------------------------------------------------------
+
+def main():
+	return 0
+
+if __name__ == '__main__':
+	main()

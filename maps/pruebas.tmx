@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="camp" tilewidth="32" tileheight="32">
+  <image source="../resources/graphics/tilesets/camp.png" trans="ff00ff"/>
+ </tileset>
+ <layer name="Layer 1" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+NkYGDgHMWjeBSP4iGAATJYavKwBAAA
+  </data>
+ </layer>
+ <layer name="Layer 2" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC42TPU8CQRCGtz4wJHDU2GGL0CA2Ig1oI/JH+CpUKFAp+LAQ9P/6bLKTTMbdwCRPspd9b27ed2/bzrkb6MCt+19PMIRnGEX2fd1BF+7NugdVpSsl3m/ANTShBX0YwINZP0a0sWobT9qD9WO1p/z1EppztOJfeypDAS7DnvVl/Y9hAlOYwdx4ygKSk/Vl/b/AK7zBApZm5jzMKDmdymAF7/ABn7BO6CQn8ZU60w1sYQd7+FJ7F2otOYkvfab6v/uGAxzhB34T80lOetaY95paX6lnn1mW6G3P1Fc16GtG658lm2IgNat4930KQSv96qqfZOP3/fnqOxUr76UStLZ0NnlA3ynnzruzUvZuZOYbf/lLA1mwBAAA
+  </data>
+ </layer>
+ <layer name="Layer 3" width="20" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC62TSQqAMAxFeyWHTdWNw8Zh43D/s/gLLson2ob44UELoSQv1Lm8eNCAFnSJ2iI61y81PRjACKbMHr4ygwWsYEvUhv5KUD398T1kBwc4wZV4j91oXEm9shurK3ajcSWF3WhcSa4tYdfW99m1ZpdS2LV1l+xau0sfnaV5NLvk/PGP40jz3M38pz+wBAAA
+  </data>
+ </layer>
+ <objectgroup name="Events" width="20" height="15">
+  <object name="jugador" type="player" x="238" y="300">
+   <properties>
+    <property name="col" value="4"/>
+    <property name="fil" value="4"/>
+    <property name="image" value="chara.png"/>
+   </properties>
+  </object>
+  <object name="nombre_evento" type="tipo_evento" x="451" y="226" width="80" height="73">
+   <properties>
+    <property name="grafico" value="chara.png"/>
+    <property name="id" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
