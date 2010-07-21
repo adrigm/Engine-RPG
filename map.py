@@ -23,10 +23,9 @@ class Map:
 		
 		self.load_map()
 		
-		size_tiles = self.size_tiles
-		size_map = self.size_map
-		
-		self.tileset = cut_tileset("resources/graphics/tilesets/"+self.name_tileset, self.size_tiles)
+		self.load_tileset()
+		print self.lock
+		print self.priority
 		
 		self.create_map()
 		
@@ -35,6 +34,38 @@ class Map:
 		f = pos[0]/self.size_tiles[1]
 		c = pos[1]/self.size_tiles[0]
 		return [f, c]
+	
+	# Extrae la información del tileset y su archivo de configuración
+	def load_tileset(self):
+		
+		self.tileset = cut_tileset("resources/graphics/tilesets/"+self.name_tileset, self.size_tiles)
+		
+		xmlMap = minidom.parse("resources/graphics/tilesets/config_"+quit_extension(self.name_tileset)+".tmx")
+		mainNode = xmlMap.childNodes[0]
+		
+		for i in range(len(mainNode.childNodes)):
+			if mainNode.childNodes[i].nodeType == 1:
+				if mainNode.childNodes[i].nodeName == "layer" and mainNode.childNodes[i].attributes.get("name").value != "tileset":
+					layer = mainNode.childNodes[i].childNodes[1].childNodes[0].data.replace("\n", "").replace(" ", "")
+					layer = decode(layer) # Decodifica la lista
+					if mainNode.childNodes[i].attributes.get("name").value == "lock":
+						for j in range(len(layer)):
+							if layer[j] != 0:
+								layer[j] = 1
+						self.lock = layer
+					if mainNode.childNodes[i].attributes.get("name").value == "priority":
+						for j in range(len(layer)):
+							if layer[j] == 17:
+								layer[j] = 1
+							elif layer[j] == 18:
+								layer[j] = 2
+							elif layer[j] == 19:
+								layer[j] = 3
+							elif layer[j] == 20:
+								layer[j] = 4
+							elif layer[j] == 21:
+								layer[j] = 5
+						self.priority = layer
 		
 	# Extrae valores mapa desde XML.	
 	def load_map(self):
@@ -141,6 +172,13 @@ def extract_name(ruta):
 	if a == -1:
 		return ruta
 	return ruta[a+1:]
+
+# Quita la extensión a un archivo.	
+def quit_extension(archivo):
+	for i in range(len(archivo)):
+		if archivo[i] == ".":
+			a = i
+	return archivo[:a]
 
 # Corta un tilest y lo almacena en un array unidimensional.  
 def cut_tileset(ruta, (w, h)):

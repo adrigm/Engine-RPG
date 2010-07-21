@@ -17,13 +17,16 @@ import os
 # Funciones
 # ---------------------------------------------------------------------
 
-
+def quit_extension(archivo):
+	for i in range(len(archivo)):
+		if archivo[i] == ".":
+			a = i
+	return archivo[:a]
 
 # ---------------------------------------------------------------------
 
 def main():
-	a = os.listdir("maps/")
-	print a
+	print quit_extension("prueba.png")
 
 if __name__ == '__main__':
 	main()
