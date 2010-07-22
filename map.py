@@ -5,6 +5,7 @@
 import base64
 import gzip
 import StringIO
+import copy
 from xml.dom import minidom, Node
 
 from constants import *
@@ -24,8 +25,6 @@ class Map:
 		self.load_map()
 		
 		self.load_tileset()
-		print self.lock
-		print self.priority
 		
 		self.create_map()
 		
@@ -116,7 +115,7 @@ class Map:
 	
 	# Crea el mapa.			
 	def create_map(self):
-		self.map = self.layers
+		self.map = copy.deepcopy(self.layers)
 		for i in range(len(self.layers)):
 			for f in range(self.height):
 				for c in range(self.width):

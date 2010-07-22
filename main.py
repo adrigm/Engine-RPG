@@ -8,6 +8,7 @@ from pygame.locals import *
 from constants import *
 from map import Map
 from actor import Actor
+from camera import Camera
 from images import load_image
 
 # Constantes
@@ -44,15 +45,15 @@ def main():
 	
 	map_loaded = Map("pruebas.tmx")
 	heroe = Actor(map_loaded)
+	camara = Camera(map_loaded)
 
 	while True:
 		time = clock.tick(40)
 		salir()
 		
-		map_loaded.dibujar_mapa(screen)
 		id = heroe.mover()
 		heroe.update(id)
-		heroe.draw(screen)
+		camara.update(screen, heroe)
 		screen.blit(rejilla, (0, 0))
 		
 		pygame.display.flip()
