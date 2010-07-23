@@ -36,7 +36,8 @@ class Map:
 		
 		self.tiles()
 		print self.tiles[0][0].lock
-		
+	
+	# Objetos tiles que gestionan todos sus detalles.
 	def tiles(self):
 		self.tiles = range(self.height)
 		for i in range(self.height):
