@@ -22,7 +22,7 @@ class Camera:
 		for i in range(len(map.layers)):
 			for f in range(map.height):
 				for c in range(map.width):
-					if map.priority[map.layers[i][f][c]-1] != 0:
+					if map.priority[map.layers[i][f][c]] != 0:
 						self.level1[i][f][c] = map.map[i][f][c]
 						self.level0[i][f][c] = None
 					else:

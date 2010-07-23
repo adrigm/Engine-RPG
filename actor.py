@@ -46,21 +46,25 @@ class Actor:
 				self.count = 8
 				self.unlock = 0
 				self.mov = 1
+				self.pos[1] -= 1
 				return 1
 			if keys[K_RIGHT]:
 				self.count = 8
 				self.unlock = 0
 				self.mov = 2
+				self.pos[1] -= 1
 				return 2
 			if keys[K_UP]:
 				self.count = 8
 				self.unlock = 0
 				self.mov = 3
+				self.pos[1] -= 1
 				return 3
 			if keys[K_DOWN]:
 				self.count = 8
 				self.unlock = 0
 				self.mov = 0
+				self.pos[1] -= 1
 				return 0
 		return -1
 	

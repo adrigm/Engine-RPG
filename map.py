@@ -16,17 +16,38 @@ from images import load_image
 # Clases
 # ---------------------------------------------------------------------
 
+class Tile:
+	def __init__(self):
+		self.images = []
+		self.priority = []
+		self.lock = 0
+		self.event = 0
+
 class Map:
 	def __init__(self, name):
 		self.name = name
 		self.layers = []
-		self.events = []
 		
 		self.load_map()
 		
 		self.load_tileset()
 		
 		self.create_map()
+		
+		self.tiles()
+		print self.lock
+		
+	def tiles(self):
+		self.tiles = range(self.height)
+		for i in range(self.height):
+			self.tiles[i] = range(self.width)
+		
+		for f in range(self.height):
+			for c in range(self.width):
+				self.tiles[f][c] = Tile()
+				for i in range(len(self.layers)):
+					self.tiles[f][c].images.append(self.map[i][f][c])
+					self.tiles[f][c].priority.append(self.priority[self.layers[i][f][c]])
 		
 	# Convierte coordenadas globales a unidades de mapa
 	def convert_unit(self, pos):
@@ -47,10 +68,43 @@ class Map:
 				if mainNode.childNodes[i].nodeName == "layer" and mainNode.childNodes[i].attributes.get("name").value != "tileset":
 					layer = mainNode.childNodes[i].childNodes[1].childNodes[0].data.replace("\n", "").replace(" ", "")
 					layer = decode(layer) # Decodifica la lista
+					layer = [None] + layer
 					if mainNode.childNodes[i].attributes.get("name").value == "lock":
 						for j in range(len(layer)):
-							if layer[j] != 0:
-								layer[j] = 1
+							if layer[j] == 0:
+								layer[j] = [1, 1, 1, 1]
+							elif layer[j] == 2:
+								layer[j] = [0, 0, 0, 0]
+							elif layer[j] == 25:
+								layer[j] = [0, 1, 1, 1]
+							elif layer[j] == 26:
+								layer[j] = [1, 0, 1, 1]
+							elif layer[j] == 27:
+								layer[j] = [1, 1, 0, 1]
+							elif layer[j] == 28:
+								layer[j] = [1, 1, 1, 0]
+							elif layer[j] == 29:
+								layer[j] = [1, 0, 0, 0]
+							elif layer[j] == 30:
+								layer[j] = [0, 1, 0, 0]
+							elif layer[j] == 31:
+								layer[j] = [0, 0, 1, 0]
+							elif layer[j] == 32:
+								layer[j] = [1, 0, 0, 1]
+							elif layer[j] == 33:
+								layer[j] = [1, 0, 1, 0]
+							elif layer[j] == 34:
+								layer[j] = [0, 1, 0, 1]
+							elif layer[j] == 35:
+								layer[j] = [1, 0, 0, 1]
+							elif layer[j] == 36:
+								layer[j] = [0, 0, 1, 1]
+							elif layer[j] == 37:
+								layer[j] = [1, 1, 0, 0]
+							elif layer[j] == 38:
+								layer[j] = [0, 1, 1, 0]
+							elif layer[j] == 39:
+								layer[j] = [1, 1, 1, 1]
 						self.lock = layer
 					if mainNode.childNodes[i].attributes.get("name").value == "priority":
 						for j in range(len(layer)):
@@ -93,6 +147,7 @@ class Map:
 				if mainNode.childNodes[i].nodeName == "objectgroup":
 					for j in range(len(mainNode.childNodes[i].childNodes)):
 						event = {}
+						event['map'] = quit_extension(self.name)
 						if mainNode.childNodes[i].childNodes[j].nodeType == 1:
 							for attrib in mainNode.childNodes[i].childNodes[j].attributes.keys():
 								if attrib == 'name' or attrib == 'type':
@@ -110,7 +165,7 @@ class Map:
 									key = mainNode.childNodes[i].childNodes[j].childNodes[1].childNodes[k].attributes.get('name').value
 									value = mainNode.childNodes[i].childNodes[j].childNodes[1].childNodes[k].attributes.get('value').value
 									event[key] = value
-						if event != {}:
+						if len(event) > 1:
 							events.append(event)
 	
 	# Crea el mapa.			
