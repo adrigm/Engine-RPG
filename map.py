@@ -20,7 +20,7 @@ class Tile:
 	def __init__(self):
 		self.images = []
 		self.priority = []
-		self.lock = 0
+		self.lock = []
 		self.event = 0
 
 class Map:
@@ -35,7 +35,7 @@ class Map:
 		self.create_map()
 		
 		self.tiles()
-		print self.lock
+		print self.tiles[0][0].lock
 		
 	def tiles(self):
 		self.tiles = range(self.height)
@@ -48,6 +48,10 @@ class Map:
 				for i in range(len(self.layers)):
 					self.tiles[f][c].images.append(self.map[i][f][c])
 					self.tiles[f][c].priority.append(self.priority[self.layers[i][f][c]])
+				if self.lock[self.layers[-1][f][c]]:
+					self.tiles[f][c].lock = self.lock[self.layers[-1][f][c]]
+				else:
+					self.tiles[f][c].lock = [1, 1, 1, 1]
 		
 	# Convierte coordenadas globales a unidades de mapa
 	def convert_unit(self, pos):
