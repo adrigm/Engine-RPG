@@ -10,6 +10,7 @@ import copy
 # Clases
 # ---------------------------------------------------------------------
 
+# Clase que gestiona la pantalla visible.
 class Camera:
 	def __init__(self, map):
 		self.width = map.width
