@@ -16,6 +16,7 @@ from images import load_image
 # Clases
 # ---------------------------------------------------------------------
 
+# Clase para crear los objetos tiles.
 class Tile:
 	def __init__(self):
 		self.images = []
@@ -24,37 +25,15 @@ class Tile:
 		self.event = 0
 
 class Map:
-	LOCK_NONE=0
-	LOCK_ALL=2
-	LOCK_U=25
-	LOCK_R=26
-	LOCK_D=27
-	LOCK_L=28
-	LOCK_RDL=29
-	LOCK_UDL=30
-	LOCK_URL=31
-	LOCK_RD=32
-	LOCK_RL=33
-	LOCK_UD=34
-	LOCK_RD=35
-	LOCK_UR=36
-	LOCK_DL=37
-	LOCK_UL=38
-	LOCK_URDL=39
 	def __init__(self, name):
 		self.name = name
 		self.layers = []
-		
-		self.load_map()
-		
-		self.load_tileset()
-		
-		self.create_map()
-		
-		self.tiles()
-		print self.tiles[0][0].lock
+		self.load_map() # Carga el mapa desde el archivo XML.
+		self.load_tileset() # Carca el tileset y su configuración.
+		self.create_map() # Método a eliminar
+		self.tiles() # Crea la lista de objetos tiles.
 	
-	# Objetos tiles que gestionan todos sus detalles.
+	# Este método pasara a ser el método create_map y self.tiles será self.map
 	def tiles(self):
 		self.tiles = range(self.height)
 		for i in range(self.height):
@@ -64,7 +43,7 @@ class Map:
 			for c in range(self.width):
 				self.tiles[f][c] = Tile()
 				for i in range(len(self.layers)):
-					self.tiles[f][c].images.append(self.map[i][f][c])
+					self.tiles[f][c].images.append(self.tileset[self.layers[i][f][c]])
 					self.tiles[f][c].priority.append(self.priority[self.layers[i][f][c]])
 				if self.lock[self.layers[-1][f][c]]:
 					self.tiles[f][c].lock = self.lock[self.layers[-1][f][c]]
@@ -92,45 +71,42 @@ class Map:
 					layer = decode(layer) # Decodifica la lista
 					layer = [None] + layer
 					if mainNode.childNodes[i].attributes.get("name").value == "lock":
-					# Las listas estan definidas así:
-					# 1: Paso
-					# 0: Bloqueo
-					# [Arriba, Derecha, Abajo, Izquierda]
-					# Las constantes usan la abreviatura en inglés y en ese orden.
+					# Lista de bloqueos de celdas, 0 (cerrado) 1 (abierto)
+					# Orden: [Arriba, Derecha, Abajo, Izquierda]
 						for j in range(len(layer)):
-							if layer[j] == self.__class__.LOCK_NONE:
+							if layer[j] == 0:
 								layer[j] = [1, 1, 1, 1]
-							elif layer[j] == self.__class__.LOCK_ALL:
+							elif layer[j] == 2:
 								layer[j] = [0, 0, 0, 0]
-							elif layer[j] == self.__class__.LOCK_U:
+							elif layer[j] == 25:
 								layer[j] = [0, 1, 1, 1]
-							elif layer[j] == self.__class__.LOCK_R:
+							elif layer[j] == 26:
 								layer[j] = [1, 0, 1, 1]
-							elif layer[j] == self.__class__.LOCK_D:
+							elif layer[j] == 27:
 								layer[j] = [1, 1, 0, 1]
-							elif layer[j] == self.__class__.LOCK_L:
+							elif layer[j] == 28:
 								layer[j] = [1, 1, 1, 0]
-							elif layer[j] == self.__class__.LOCK_RDL:
+							elif layer[j] == 29:
 								layer[j] = [1, 0, 0, 0]
-							elif layer[j] == self.__class__.LOCK_UDL:
+							elif layer[j] == 30:
 								layer[j] = [0, 1, 0, 0]
-							elif layer[j] == self.__class__.LOCK_URL:
+							elif layer[j] == 31:
 								layer[j] = [0, 0, 1, 0]
-							elif layer[j] == self.__class__.LOCK_RD:
+							elif layer[j] == 32:
 								layer[j] = [1, 0, 0, 1]
-							elif layer[j] == self.__class__.LOCK_RL:
+							elif layer[j] == 33:
 								layer[j] = [1, 0, 1, 0]
-							elif layer[j] == self.__class__.LOCK_UD:
+							elif layer[j] == 34:
 								layer[j] = [0, 1, 0, 1]
-							elif layer[j] == self.__class__.LOCK_RD:
+							elif layer[j] == 35:
 								layer[j] = [1, 0, 0, 1]
-							elif layer[j] == self.__class__.LOCK_UR:
+							elif layer[j] == 36:
 								layer[j] = [0, 0, 1, 1]
-							elif layer[j] == self.__class__.LOCK_DL:
+							elif layer[j] == 37:
 								layer[j] = [1, 1, 0, 0]
-							elif layer[j] == self.__class__.LOCK_UL:
+							elif layer[j] == 38:
 								layer[j] = [0, 1, 1, 0]
-							elif layer[j] == self.__class__.LOCK_URDL:
+							elif layer[j] == 39:
 								layer[j] = [1, 1, 1, 1]
 						self.lock = layer
 					if mainNode.childNodes[i].attributes.get("name").value == "priority":
@@ -195,7 +171,7 @@ class Map:
 						if len(event) > 1:
 							events.append(event)
 	
-	# Crea el mapa.			
+	# Método a eliminar (sustituye metodo tiles).
 	def create_map(self):
 		self.map = copy.deepcopy(self.layers)
 		for i in range(len(self.layers)):
@@ -205,13 +181,6 @@ class Map:
 						self.map[i][f][c] = self.tileset[self.layers[i][f][c]]
 					else:
 						self.map[i][f][c] = None
-						
-	def dibujar_mapa(self, screen):
-		for i in range(len(self.layers)):
-			for f in range(self.height):
-				for c in range(self.width):
-					if self.map[i][f][c]:
-						screen.blit(self.map[i][f][c], (self.size_tiles[0]*c, self.size_tiles[1]*f))
 
 # ---------------------------------------------------------------------
 
