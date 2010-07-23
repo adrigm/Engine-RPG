@@ -24,6 +24,23 @@ class Tile:
 		self.event = 0
 
 class Map:
+	LOCK_NONE=0
+	LOCK_ALL=2
+	LOCK_U=25
+	LOCK_R=26
+	LOCK_D=27
+	LOCK_L=28
+	LOCK_RDL=29
+	LOCK_UDL=30
+	LOCK_URL=31
+	LOCK_RD=32
+	LOCK_RL=33
+	LOCK_UD=34
+	LOCK_RD=35
+	LOCK_UR=36
+	LOCK_DL=37
+	LOCK_UL=38
+	LOCK_URDL=39
 	def __init__(self, name):
 		self.name = name
 		self.layers = []
@@ -70,40 +87,45 @@ class Map:
 					layer = decode(layer) # Decodifica la lista
 					layer = [None] + layer
 					if mainNode.childNodes[i].attributes.get("name").value == "lock":
+					# Las listas estan definidas así:
+					# 1: Paso
+					# 0: Bloqueo
+					# [Arriba, Derecha, Abajo, Izquierda]
+					# Las constantes usan la abreviatura en inglés y en ese orden.
 						for j in range(len(layer)):
-							if layer[j] == 0:
+							if layer[j] == self.__class__.LOCK_NONE:
 								layer[j] = [1, 1, 1, 1]
-							elif layer[j] == 2:
+							elif layer[j] == self.__class__.LOCK_ALL:
 								layer[j] = [0, 0, 0, 0]
-							elif layer[j] == 25:
+							elif layer[j] == self.__class__.LOCK_U:
 								layer[j] = [0, 1, 1, 1]
-							elif layer[j] == 26:
+							elif layer[j] == self.__class__.LOCK_R:
 								layer[j] = [1, 0, 1, 1]
-							elif layer[j] == 27:
+							elif layer[j] == self.__class__.LOCK_D:
 								layer[j] = [1, 1, 0, 1]
-							elif layer[j] == 28:
+							elif layer[j] == self.__class__.LOCK_L:
 								layer[j] = [1, 1, 1, 0]
-							elif layer[j] == 29:
+							elif layer[j] == self.__class__.LOCK_RDL:
 								layer[j] = [1, 0, 0, 0]
-							elif layer[j] == 30:
+							elif layer[j] == self.__class__.LOCK_UDL:
 								layer[j] = [0, 1, 0, 0]
-							elif layer[j] == 31:
+							elif layer[j] == self.__class__.LOCK_URL:
 								layer[j] = [0, 0, 1, 0]
-							elif layer[j] == 32:
+							elif layer[j] == self.__class__.LOCK_RD:
 								layer[j] = [1, 0, 0, 1]
-							elif layer[j] == 33:
+							elif layer[j] == self.__class__.LOCK_RL:
 								layer[j] = [1, 0, 1, 0]
-							elif layer[j] == 34:
+							elif layer[j] == self.__class__.LOCK_UD:
 								layer[j] = [0, 1, 0, 1]
-							elif layer[j] == 35:
+							elif layer[j] == self.__class__.LOCK_RD:
 								layer[j] = [1, 0, 0, 1]
-							elif layer[j] == 36:
+							elif layer[j] == self.__class__.LOCK_UR:
 								layer[j] = [0, 0, 1, 1]
-							elif layer[j] == 37:
+							elif layer[j] == self.__class__.LOCK_DL:
 								layer[j] = [1, 1, 0, 0]
-							elif layer[j] == 38:
+							elif layer[j] == self.__class__.LOCK_UL:
 								layer[j] = [0, 1, 1, 0]
-							elif layer[j] == 39:
+							elif layer[j] == self.__class__.LOCK_URDL:
 								layer[j] = [1, 1, 1, 1]
 						self.lock = layer
 					if mainNode.childNodes[i].attributes.get("name").value == "priority":
