@@ -40,15 +40,25 @@ class Camera:
 			self.scrolly = 0
 		if self.scrolly > map.height*map.size_tiles[1] - HEIGHT:
 			self.scrolly = map.height*map.size_tiles[1] - HEIGHT
-		for f in range(map.height):
-			for c in range(map.width):
+			
+		inicial = self.mouse_map(map, 0, 0)
+		lim_right = self.mouse_map(map, 640, 0)
+		lim_bottom = self.mouse_map(map, 0, 480)
+		
+		if lim_right[1] >= map.width:
+			lim_right[1] -= 1
+		if lim_bottom[0] >= map.height:
+			lim_bottom[0] -= 1
+			
+		for f in range(inicial[0], lim_bottom[0]+1):
+			for c in range(inicial[1], lim_right[1]+1):
 				for i in range(len(map.tiles[f][c].priority)):
 					if map.tiles[f][c].priority[i] == 0:
 						if map.tiles[f][c].images[i]:
 							screen.blit(map.tiles[f][c].images[i], self.plot(map, f, c))
 		
-		for f in range(map.height):
-			for c in range(map.width):
+		for f in range(inicial[0], lim_bottom[0]+1):
+			for c in range(inicial[1], lim_right[1]+1):
 				for i in range(len(map.tiles[f][c].priority)):
 					if player.pos == [f, c]:
 						screen.blit(player.image, (player.rect.left-self.scrollx, player.rect.top-self.scrolly))
@@ -56,8 +66,8 @@ class Camera:
 						if map.tiles[f][c].images[i]:
 							screen.blit(map.tiles[f][c].images[i], self.plot(map, f, c))
 				
-		for f in range(map.height):
-			for c in range(map.width):
+		for f in range(inicial[0], lim_bottom[0]+1):
+			for c in range(inicial[1], lim_right[1]+1):
 				for i in range(len(map.tiles[f][c].priority)):
 					if map.tiles[f][c].priority[i] > 1:
 						if map.tiles[f][c].images[i]:
