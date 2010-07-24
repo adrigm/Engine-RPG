@@ -53,7 +53,7 @@ def main():
 		
 		id = heroe.mover()
 		heroe.update(id)
-		camara.update(screen, heroe)
+		camara.update(screen, map_loaded, heroe)
 		screen.blit(rejilla, (0, 0))
 		
 		pygame.display.flip()

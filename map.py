@@ -49,6 +49,8 @@ class Map:
 					self.tiles[f][c].lock = self.lock[self.layers[-1][f][c]]
 				else:
 					self.tiles[f][c].lock = [1, 1, 1, 1]
+				self.tiles[f][c].images = order(self.tiles[f][c].priority, self.tiles[f][c].images)
+				self.tiles[f][c].priority.sort()
 		
 	# Convierte coordenadas globales a unidades de mapa
 	def convert_unit(self, pos):
@@ -58,7 +60,7 @@ class Map:
 	
 	# Extrae la información del tileset y su archivo de configuración
 	def load_tileset(self):
-		
+		# Corta el tileset y almacena los sprites en un array unidimensional (índice 0 conitene None)
 		self.tileset = cut_tileset("resources/graphics/tilesets/"+self.name_tileset, self.size_tiles)
 		
 		xmlMap = minidom.parse("resources/graphics/tilesets/config_"+quit_extension(self.name_tileset)+".tmx")
@@ -70,6 +72,7 @@ class Map:
 					layer = mainNode.childNodes[i].childNodes[1].childNodes[0].data.replace("\n", "").replace(" ", "")
 					layer = decode(layer) # Decodifica la lista
 					layer = [None] + layer
+					# Crea la capa de bloqueos
 					if mainNode.childNodes[i].attributes.get("name").value == "lock":
 					# Lista de bloqueos de celdas, 0 (cerrado) 1 (abierto)
 					# Orden: [Arriba, Derecha, Abajo, Izquierda]
@@ -109,6 +112,7 @@ class Map:
 							elif layer[j] == 39:
 								layer[j] = [1, 1, 1, 1]
 						self.lock = layer
+					# Crea la capa de prioridades
 					if mainNode.childNodes[i].attributes.get("name").value == "priority":
 						for j in range(len(layer)):
 							if layer[j] == 17:
@@ -121,6 +125,8 @@ class Map:
 								layer[j] = 4
 							elif layer[j] == 21:
 								layer[j] = 5
+							else:
+								layer[j] = 0
 						self.priority = layer
 		
 	# Extrae valores mapa desde XML.	
@@ -147,6 +153,7 @@ class Map:
 					layer = decode(layer) # Decodifica la lista
 					layer = convert(layer, self.width) # Convierta en array bidimensional
 					self.layers.append(layer)
+				# Añade todos los eventos del mapa a la lista global de eventos.
 				if mainNode.childNodes[i].nodeName == "objectgroup":
 					for j in range(len(mainNode.childNodes[i].childNodes)):
 						event = {}
@@ -246,6 +253,20 @@ def cut_tileset(ruta, (w, h)):
 		rect.left = 0
 		
 	return sprite
+	
+# Ordena b en función de a.
+def order(a, b):
+	intercambios=1
+	pasada=1
+	while pasada<len(a) and intercambios==1:
+		intercambios=0
+		for i in range(0,len(a)-pasada):
+			if a[i] > a[i+1]:
+				a[i], a[i+1] = a[i+1], a[i]
+				b[i], b[i+1] = b[i+1], b[i]
+				intercambios=1
+		pasada += 1
+	return b
 
 # ---------------------------------------------------------------------
 

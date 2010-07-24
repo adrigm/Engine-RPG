@@ -18,10 +18,6 @@ class Event:
 		self.pos = events[id]['pos']
 		self.map = events[id]['map']
 		
-class Player(Event):
-	def __init__(self):
-		Event.__init__(id)
-		
 		
 # ---------------------------------------------------------------------
 
