@@ -16,9 +16,9 @@
    H4sIAAAAAAAAA2NgIA0wIdFMZMgzECHPREB+sAF0t2JzuzQSloGKSSGplUTCMlAxZHlk/YpIerABJSz2o7sXZhYTGRiX37HJAwDyo5AjYAIAAA==
   </data>
  </layer>
- <layer name="priority" width="8" height="19" visible="0">
+ <layer name="priority" width="8" height="19">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA2NgGPpAFIqx8UUIYGECWIgAJgQEsWByAD79xMpRYj+5AABD/tECYAIAAA==
+   H4sIAAAAAAAAA1NnGPpAFIqx8UUIYGECWIgAJgQEsWByAD79+NxDLfvJBQBYiH7xYAIAAA==
   </data>
  </layer>
 </map>
