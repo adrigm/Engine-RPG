@@ -29,9 +29,17 @@ class Camera:
 		
 						
 	def update(self, screen, map, player):
-		self.centro = (player.rect.left, player.rect.top)
+		self.centro = (player.rect.left, player.rect.top+map.size_tiles[1])
 		self.scrollx = self.centro[0] - WIDTH/2
 		self.scrolly = self.centro[1] - HEIGHT/2
+		if self.scrollx < 0:
+			self.scrollx = 0
+		if self.scrollx > map.width*map.size_tiles[0] - WIDTH:
+			self.scrollx = map.width*map.size_tiles[0] - WIDTH
+		if self.scrolly < 0:
+			self.scrolly = 0
+		if self.scrolly > map.height*map.size_tiles[1] - HEIGHT:
+			self.scrolly = map.height*map.size_tiles[1] - HEIGHT
 		for f in range(map.height):
 			for c in range(map.width):
 				for i in range(len(map.tiles[f][c].priority)):

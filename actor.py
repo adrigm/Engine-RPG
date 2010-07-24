@@ -99,8 +99,6 @@ class Actor:
 			self.unlock = 1
 			self.wait = 4
 		
-			
-		
 	def draw(self, screen):
 		screen.blit(self.image, self.rect)
 		
