@@ -13,6 +13,7 @@ from images import load_image
 
 # Constantes
 
+
 # Clases
 # ---------------------------------------------------------------------
 

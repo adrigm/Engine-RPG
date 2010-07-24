@@ -42,10 +42,11 @@ def main():
 
 	clock = pygame.time.Clock()
 	rejilla = load_image('resources/graphics/rejilla.png', True)
+	fondo = load_image('resources/graphics/fondo.jpg', True)
 	
 	map_loaded = Map("pruebas.tmx")
 	heroe = Actor(map_loaded)
-	camara = Camera(map_loaded)
+	camara = Camera(map_loaded, heroe)
 
 	while True:
 		time = clock.tick(40)
@@ -53,6 +54,7 @@ def main():
 		
 		id = heroe.mover()
 		heroe.update(id)
+		screen.blit(fondo, (0, 0))
 		camara.update(screen, map_loaded, heroe)
 		screen.blit(rejilla, (0, 0))
 		
