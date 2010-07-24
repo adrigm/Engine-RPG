@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
+<map version="1.0" orientation="orthogonal" width="25" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="camp" tilewidth="32" tileheight="32">
   <image source="../resources/graphics/tilesets/camp.png" trans="ff00ff"/>
  </tileset>
- <layer name="Layer 1" width="20" height="15">
+ <layer name="Layer 1" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA+NkYGDgHMWjeBSP4iGAATJYavKwBAAA
+   H4sIAAAAAAAAA+NkYGDgHMWjeBSP4lE8ikfxkMYAN0K78dAHAAA=
   </data>
  </layer>
- <layer name="Layer 2" width="20" height="15">
+ <layer name="Layer 2" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA42TPU8CQRCGtz4wJHDU2GGL0CA2Ig1oI/JH+CpUKFAp+LAQ9P/6bLKTTMbdwCRPspd9b27ed2/bzrkb6MCt+19PMIRnGEX2fd1BF+7NugdVpSsl3m/ANTShBX0YwINZP0a0sWobT9qD9WO1p/z1EppztOJfeypDAS7DnvVl/Y9hAlOYwdx4ygKSk/Vl/b/AK7zBApZm5jzMKDmdymAF7/ABn7BO6CQn8ZU60w1sYQd7+FJ7F2otOYkvfab6v/uGAxzhB34T80lOetaY95paX6lnn1mW6G3P1Fc16GtG658lm2IgNat4930KQSv96qqfZOP3/fnqOxUr76UStLZ0NnlA3ynnzruzUvZuZOYbf/lLA1mwBAAA
+   H4sIAAAAAAAAA5WUuU7EQAyGp044pGWXcpcOWo5mgYaFBtiG40W4Cq6Cq+AquN6Xb6Sx5DXjSfilT0rGnjj+48kwhLAOG7AZ/uoADuEIjjPxqC0YwTbstIj3VGzWeeYyrMAqrMEu7ME+jDM5Nm735zQMk73netU5Nm7359Tkjc35z37xTvfegRoWTK7OsZ5Y707gFM7gHC7CZO9Vwnqsc6wn1rtLuIJruIFb877d1EvJ45KnUXdwDw/wCE9OXslj8cSbpWd4gVd4g3cVm1bXufkViSe6T30uPuATvuAbfpw+ms5qqc+Bul5S9/EbVE69nHJ99tIzBiY33ouvU4k2sn3GZ9dpv9RYVDXE1xiPc+X9G2Q9p+jDXNpvpX3tJry5lXVdr/SPEtkzXgX/e8q6rlf6R7WtO86s63reeezDDMw7Nby5lfXSe0Q1+Wjn18svnR/PRz17dYv8kjwf9ex1GvJ/AWLklQLQBwAA
   </data>
  </layer>
- <layer name="Layer 3" width="20" height="15">
+ <layer name="Layer 3" width="25" height="20">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAA62TOQqAMBBFvZJL49K4NC6NS6dW6v2v4BdShM9oEuKHBwmMYfImBoFdUpCBHBSG2lBbJy81JahADRrLHr7Sgg70YDDUPv1FIFb98f7JCCYwg8VwHrtxcSX1ym58XbEbF1dS2I2LK8m1T9i17/ns2mWWUti17yzZtTTLFWyKnb5PtbV0H2mWBzgV10dvf/zHeqS3eQN0F6iDsAQAAA==
+   H4sIAAAAAAAAA2NgIA5YArEVEFsDsQ2RepCBIRLbBIcaRyB2AmJnIHYhww5igCcQewGxNxD7kKEf5A8jIDZmgPgDnQ8CgUAcBMTBQBxChh3oYU1K2BPrJ/SwpkXYo4c1pWGPDaCHNSlhjy3uqA2IiTtK3YEr7mRIdAc+QEzcUZqG8MWdAh53RANxDBTHoumzRGIT629s7kgG4hQoTsWjd6iUW9gAtcstEJDBrZwsQEwaE6DQDlqUUyCAHBaUhjUuAABJrx370AcAAA==
   </data>
  </layer>
- <objectgroup name="Events" width="20" height="15">
+ <objectgroup name="Events" width="25" height="20">
   <object name="jugador" type="player" x="238" y="300">
    <properties>
     <property name="col" value="4"/>
