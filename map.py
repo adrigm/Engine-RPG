@@ -46,10 +46,18 @@ class Map:
 				for i in range(len(self.layers)):
 					self.tiles[f][c].images.append(self.tileset[self.layers[i][f][c]])
 					self.tiles[f][c].priority.append(self.priority[self.layers[i][f][c]])
-				if self.lock[self.layers[-1][f][c]]:
-					self.tiles[f][c].lock = self.lock[self.layers[-1][f][c]]
+					
+				# Esto está mal, hay que cambiarlo.
+				a = range(len(self.layers))
+				a.reverse()
+				for i in a:
+					if self.lock[self.layers[i][f][c]]:
+						self.tiles[f][c].lock = self.lock[self.layers[i][f][c]]
+						break
+					
 				else:
 					self.tiles[f][c].lock = [1, 1, 1, 1]
+					
 				self.tiles[f][c].images = order(self.tiles[f][c].priority, self.tiles[f][c].images)
 				self.tiles[f][c].priority.sort()
 		

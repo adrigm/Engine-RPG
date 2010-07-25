@@ -39,33 +39,45 @@ class Actor:
 		self.graph = 0
 		self.wait = 0
 	
-	def mover(self):
+	def mover(self, map):
 		keys = pygame.key.get_pressed()
 		if self.unlock:
 			if keys[K_LEFT]:
-				self.count = 8
-				self.unlock = 0
-				self.mov = 1
-				self.pos[1] -= 1
-				return 1
-			if keys[K_RIGHT]:
-				self.count = 8
-				self.unlock = 0
-				self.mov = 2
-				self.pos[1] += 1
-				return 2
-			if keys[K_UP]:
-				self.count = 8
-				self.unlock = 0
-				self.mov = 3
-				self.pos[0] -= 1
-				return 3
-			if keys[K_DOWN]:
-				self.count = 8
-				self.unlock = 0
-				self.mov = 0
-				self.pos[0] += 1
-				return 0
+				if map.tiles[self.pos[0]][self.pos[1]].lock[3] and map.tiles[self.pos[0]][self.pos[1]-1].lock[1]:
+					self.count = 8
+					self.unlock = 0
+					self.mov = 1
+					self.pos[1] -= 1
+					return 1
+				else:
+					self.image = self.chara[1][0]
+			elif keys[K_RIGHT]:
+				if map.tiles[self.pos[0]][self.pos[1]].lock[1] and map.tiles[self.pos[0]][self.pos[1]+1].lock[3]:
+					self.count = 8
+					self.unlock = 0
+					self.mov = 2
+					self.pos[1] += 1
+					return 2
+				else:
+					self.image = self.chara[2][0]
+			elif keys[K_UP]:
+				if map.tiles[self.pos[0]][self.pos[1]].lock[0] and map.tiles[self.pos[0]-1][self.pos[1]].lock[2]:
+					self.count = 8
+					self.unlock = 0
+					self.mov = 3
+					self.pos[0] -= 1
+					return 3
+				else:
+					self.image = self.chara[3][0]
+			elif keys[K_DOWN]:
+				if map.tiles[self.pos[0]][self.pos[1]].lock[2] and map.tiles[self.pos[0]+1][self.pos[1]].lock[0]:
+					self.count = 8
+					self.unlock = 0
+					self.mov = 0
+					self.pos[0] += 1
+					return 0
+				else:
+					self.image = self.chara[0][0]
 		return -1
 	
 	def update(self, id):

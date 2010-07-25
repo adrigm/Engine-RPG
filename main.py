@@ -51,7 +51,7 @@ def main():
 		time = clock.tick(40)
 		salir()
 		
-		id = heroe.mover()
+		id = heroe.mover(map_loaded)
 		heroe.update(id)
 		camara.update(screen, map_loaded, heroe)
 		#screen.blit(rejilla, (0, 0))

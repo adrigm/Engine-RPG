@@ -12,26 +12,32 @@ from constants import *
 # Clases
 # ---------------------------------------------------------------------
 
-# Clase que gestiona la pantalla visible.
+# Clase que gestiona el dibujado en pantalla. (todo lo debe dibujar esta clase).
 class Camera:
 	def __init__(self, map, player):
 		pass
-		
+	
+	# Devuelve las coedenadas de pantalla de un tile.	
 	def plot(self, map, f, c):
 		x = map.size_tiles[0]*c - self.scrollx
 		y = map.size_tiles[1]*f - self.scrolly
 		return (x, y)
-		
+	
+	# Duvuelve el tile de un punto (x, y) del mapa.
 	def mouse_map(self, map, x, y):
 		f = (y + self.scrolly) / map.size_tiles[1]
 		c = (x + self.scrollx) / map.size_tiles[0]
 		return [f, c]
 		
-						
+	# Dibuja en pantalla todo lo necesario.					
 	def update(self, screen, map, player):
+		# Centro como referencia para el scroll apartir de la esquina inferior izquierda del tile del player.
 		self.centro = (player.rect.left, player.rect.top+map.size_tiles[1])
+		# Definimos el scroll en los dos ejes.
 		self.scrollx = self.centro[0] - WIDTH/2
 		self.scrolly = self.centro[1] - HEIGHT/2
+		
+		# Comprobamos que el scroll no se sale del mapa.
 		if self.scrollx < 0:
 			self.scrollx = 0
 		if self.scrollx > map.width*map.size_tiles[0] - WIDTH:
@@ -40,16 +46,20 @@ class Camera:
 			self.scrolly = 0
 		if self.scrolly > map.height*map.size_tiles[1] - HEIGHT:
 			self.scrolly = map.height*map.size_tiles[1] - HEIGHT
-			
-		inicial = self.mouse_map(map, 0, 0)
-		lim_right = self.mouse_map(map, 640, 0)
-		lim_bottom = self.mouse_map(map, 0, 480)
 		
+		# Buscamos el cuadro superior-izquierdo, superior-derecho e inferior derecho de la pantalla.
+		# con esto definimos el rango que debe de tiles que debe ser dibujado.	
+		inicial = self.mouse_map(map, 0, 0)
+		lim_right = self.mouse_map(map, WIDTH, 0)
+		lim_bottom = self.mouse_map(map, 0, HEIGHT)
+		
+		# Corrección de los límites del mapa para que no dibuje el siguiente tile (no existe).
 		if lim_right[1] >= map.width:
 			lim_right[1] -= 1
 		if lim_bottom[0] >= map.height:
 			lim_bottom[0] -= 1
-			
+		
+		# Dibujamos todo lo que tiene prioridad inferior a los eventos.	
 		for f in range(inicial[0], lim_bottom[0]+1):
 			for c in range(inicial[1], lim_right[1]+1):
 				for i in range(len(map.tiles[f][c].priority)):
@@ -57,6 +67,7 @@ class Camera:
 						if map.tiles[f][c].images[i]:
 							screen.blit(map.tiles[f][c].images[i], self.plot(map, f, c))
 		
+		# Dibujamos los eventos y los tiles con su misma prioridad.
 		for f in range(inicial[0], lim_bottom[0]+1):
 			for c in range(inicial[1], lim_right[1]+1):
 				for i in range(len(map.tiles[f][c].priority)):
@@ -65,7 +76,8 @@ class Camera:
 					if map.tiles[f][c].priority[i] == 1:
 						if map.tiles[f][c].images[i]:
 							screen.blit(map.tiles[f][c].images[i], self.plot(map, f, c))
-				
+		
+		# Dibujamos los tiles de mayor prioridad.		
 		for f in range(inicial[0], lim_bottom[0]+1):
 			for c in range(inicial[1], lim_right[1]+1):
 				for i in range(len(map.tiles[f][c].priority)):
