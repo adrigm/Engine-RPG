@@ -48,9 +48,7 @@ class Map:
 					self.tiles[f][c].priority.append(self.priority[self.layers[i][f][c]])
 					
 				# Esto está mal, hay que cambiarlo.
-				a = range(len(self.layers))
-				a.reverse()
-				for i in a:
+				for i in range(len(self.layers)):
 					if self.lock[self.layers[i][f][c]]:
 						self.tiles[f][c].lock = self.lock[self.layers[i][f][c]]
 						break
@@ -60,6 +58,7 @@ class Map:
 					
 				self.tiles[f][c].images = order(self.tiles[f][c].priority, self.tiles[f][c].images)
 				self.tiles[f][c].priority.sort()
+				
 		
 	# Convierte coordenadas globales a unidades de mapa
 	def convert_unit(self, pos):

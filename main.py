@@ -10,6 +10,7 @@ from map import Map
 from actor import Actor
 from camera import Camera
 from images import load_image
+from input import input
 
 # Constantes
 WIDTH = 640
@@ -30,8 +31,8 @@ def salir():
 	for eventos in pygame.event.get():
 		if eventos.type == QUIT:
 			sys.exit(0)
-		if keys[K_ESCAPE]:
-			sys.exit(0)
+	if keys[K_ESCAPE]:
+		sys.exit(0)
 
 # ---------------------------------------------------------------------
 

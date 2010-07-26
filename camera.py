@@ -74,16 +74,15 @@ class Camera:
 					if player.pos == [f, c]:
 						screen.blit(player.image, (player.rect.left-self.scrollx, player.rect.top-self.scrolly))
 					if map.tiles[f][c].priority[i] == 1:
-						if map.tiles[f][c].images[i]:
-							screen.blit(map.tiles[f][c].images[i], self.plot(map, f, c))
+						screen.blit(map.tiles[f][c].images[i], self.plot(map, f, c))
+						break
 		
 		# Dibujamos los tiles de mayor prioridad.		
 		for f in range(inicial[0], lim_bottom[0]+1):
 			for c in range(inicial[1], lim_right[1]+1):
 				for i in range(len(map.tiles[f][c].priority)):
 					if map.tiles[f][c].priority[i] > 1:
-						if map.tiles[f][c].images[i]:
-							screen.blit(map.tiles[f][c].images[i], self.plot(map, f, c))
+						screen.blit(map.tiles[f][c].images[i], self.plot(map, f, c))
 
 
 # ---------------------------------------------------------------------
