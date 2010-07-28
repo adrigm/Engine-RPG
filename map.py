@@ -6,7 +6,7 @@ import base64
 import gzip
 import StringIO
 import copy
-from xml.dom import minidom, Node
+from xml.dom import minidom
 
 from constants import *
 from images import load_image
@@ -24,6 +24,7 @@ class Tile:
 		self.priority = []
 		self.lock = []
 		self.event = 0
+		self.pos = []
 
 class Map:
 	def __init__(self, name):
@@ -43,18 +44,17 @@ class Map:
 		for f in range(self.height):
 			for c in range(self.width):
 				self.tiles[f][c] = Tile()
+				lock = [1, 1, 1, 1]
 				for i in range(len(self.layers)):
 					self.tiles[f][c].images.append(self.tileset[self.layers[i][f][c]])
 					self.tiles[f][c].priority.append(self.priority[self.layers[i][f][c]])
+					self.tiles[f][c].pos = [f, c]
 					
-				# Esto está mal, hay que cambiarlo.
-				for i in range(len(self.layers)):
-					if self.lock[self.layers[i][f][c]]:
-						self.tiles[f][c].lock = self.lock[self.layers[i][f][c]]
-						break
-					
-				else:
-					self.tiles[f][c].lock = [1, 1, 1, 1]
+					for j in range(4):
+						if self.layers[i][f][c] != 0:
+							if self.lock[self.layers[i][f][c]][j] == 0:
+								lock[j] = 0
+					self.tiles[f][c].lock = lock
 					
 				self.tiles[f][c].images = order(self.tiles[f][c].priority, self.tiles[f][c].images)
 				self.tiles[f][c].priority.sort()

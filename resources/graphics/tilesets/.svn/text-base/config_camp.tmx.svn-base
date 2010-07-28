@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="8" height="19" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="config" tilewidth="32" tileheight="32">
+  <image source="config.png"/>
+ </tileset>
+ <tileset firstgid="41" name="camp" tilewidth="32" tileheight="32">
+  <image source="camp.png" trans="ff00ff"/>
+ </tileset>
+ <layer name="tileset" width="8" height="19">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAw3DhzYVAAAA0Pc79sxOpeytKA0hsreGUbJVSkZktGWE0iaST3PvOTcoEAgEG2KoYYYbYaRRRhtjrKeMM94EE00y2RRPm+oZz3rONM97wXQzzDTLbHPMNc98Cyy0yGJLvOglSy3zslcs96rXvO4NK7xppVVWe8saa71tnfU22GiTzbbYapvtdthpl93e8a73vG+PvfbZ7wMfOuAjBx1y2BFHHXPcCR/7xKdO+sznTvnCaWecdc6XzrvgKxddctkVX/vGt77zvR/86KqfXHPdDTf97Jbb7vjFr+76ze/+8Ke//O0f99z3rwce+s8j/3vsCZ3kPztgAgAA
+  </data>
+ </layer>
+ <layer name="lock" width="8" height="19">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgIA0wIdFMZMgzECHPREB+sAF0t2JzuzQSloGKSSGplUTCMlAxZHlk/YpIerABJSz2o7sXZhYTGRiX37HJAwDyo5AjYAIAAA==
+  </data>
+ </layer>
+ <layer name="priority" width="8" height="19">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA1NnGPpAFIqx8UUIYGECWIgAJgQEsWByAD79+NxDLfvJBQBYiH7xYAIAAA==
+  </data>
+ </layer>
+</map>

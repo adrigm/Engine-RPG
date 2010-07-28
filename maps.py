@@ -2,10 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # Módulos
-import os
 
 # Constantes
-from constants import list_maps
 
 
 # Clases

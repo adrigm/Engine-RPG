@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 
 # Módulos
-import sys, pygame
-from pygame.locals import *
-import pytweener
+import pygame
 
 # Constantes
 WIDTH = 640
@@ -34,42 +32,6 @@ class Chara:
 # Funciones
 # ---------------------------------------------------------------------
 
-# Corta un chara en las fil y col indicadas. Array Bidimensional.
-def cut_charaset(ruta, fil, col):
-	image = load_image(ruta, True)
-	rect = image.get_rect()
-	w = rect.w / col
-	h = rect.h / fil
-	sprite = range(fil)
-	for i in range(fil):
-		sprite[i] = range(col)
-
-	for f in range(fil):
-		for c in range(col):
-			sprite[f][c] = image.subsurface((rect.left, rect.top, w, h))
-			rect.left += w
-		rect.top += h
-		rect.left = 0
-
-	return sprite
-
-def load_image(filename, transparent=False):
-        try: image = pygame.image.load(filename)
-        except pygame.error, message:
-                raise SystemExit, message
-        image = image.convert()
-        if transparent:
-                color = image.get_at((0,0))
-                image.set_colorkey(color, RLEACCEL)
-        return image
-        
-def salir():
-	keys = pygame.key.get_pressed()
-	for eventos in pygame.event.get():
-		if eventos.type == QUIT:
-			sys.exit(0)
-		if keys[K_ESCAPE]:
-			sys.exit(0)
 
 # ---------------------------------------------------------------------
 
@@ -95,6 +57,12 @@ def main():
 		pygame.display.flip()
 	return 0
 
+# ---------------------------------------------------------------------
+
+def main():
+	pass
+	
+	
 if __name__ == '__main__':
 	pygame.init()
 	main()

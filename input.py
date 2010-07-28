@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 
 # Módulos
-
-
+import pygame
+from pygame.locals import *
 
 # Constantes
 
@@ -11,10 +11,18 @@
 # Clases
 # ---------------------------------------------------------------------
 
-def input():
-	keys = pygame.key.get_pressed()
-	if keys[K_ESCAPE]:
-		sys.exit(0)
+class Input:
+	def __init__(self):
+		self.keys = ()
+
+	def update(self):
+		self.keys = pygame.key.get_pressed()
+
+	def is_pressed(self, k):
+		return self.keys[k]
+	
+	def get_key_list(self):
+		return self.keys
 
 # ---------------------------------------------------------------------
 
@@ -26,7 +34,6 @@ def input():
 # ---------------------------------------------------------------------
 
 def main():
-	input = Input()
 	pass
 
 if __name__ == '__main__':

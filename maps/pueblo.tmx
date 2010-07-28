@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="pueblo" tilewidth="32" tileheight="32">
+  <image source="../resources/graphics/tilesets/pueblo.png" trans="ff00ff"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="50" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3ROwrAIBBFUV1efkV+RZL970PLIChEEucFbnG7AT0z3jnnX26OLbfWD95oEQ6tcGiFQyscWuFoXxfrM42JYyrMDmI7r836Vjhw4MCBAweO/zuO2JlpS/66F2YvY8eTW1nvHAcOpXBohUMrHFrh0AqHVjjqC6gZzIZAHwAA
+  </data>
+ </layer>
+ <layer name="Capa de patrones 2" width="50" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2ZW0uVURCGF/2EutMflhd5grICNbvQSlAzSE1IS7D6KxZIJogZdNCr7M/4xt4LPsaZNe86uPOiB1749ues07jHmVkuhxBWoOchzRK0TNg+zHxfwjy0AD2BnvbfrUHr0IYz9iVp+zjzfQmaT7egbegNtAd9FPrUt3stbK+K1B4imk/fQe+hD9AB9EXosG+3K2wtJjPfS1J7iHg+ZeaI3IFGoTHxnokPayy7B8+nOee4C92DpsR7Jj6ssbl7sPgKnQh9M2ynoRloNnMNb2zOHix+QadCZ5lz1MZHiz38hs6F/mTOUZs/mD1o+UNyQ4ih62smPrzfjbcHLX/Ic5WcIzdXe/beHrT8Ic+Vc45n0GLo+To+t7JPra/lD63WsOa4DY10Pq9CL5Rni1x7Cy1/5NQa49AEuRYTixrSVyxMrRG5Dz0g52XrY4nlq1K/aDyC5jqfb0K3DFuvPrbGWr5i/cLUmZIhaNj4mVfLWWOlryJs39CirunC1scsbN/AnEPGYOp75WGNteKc9QtzDhmDqe+VhzW2u8Z+uPxd/+zMy9SZOX+vSumucRQu+/bYGc/UmVYMsrUsY99do+QcJbXuK2gz9Oql+NzSvuQckZz68C20E3r1UnxO9R+afYrv0A+hn+Tecs6hUdp/aPm6pqeqPUfp/ZWWr1v0dYMmla9rfVtCaX+eytfMOVrVkJHS+KitY0pq6xSDuN/VYO+prwtWH9L67rn2/srD6kNa1tZ/qb2/8vo+tg+ppTY+vL5vUP+/qMXzd+v+zKI2Pq6Lv2vjY1D+9vhX+eM/OledPywuANO7kdVAHwAA
+  </data>
+ </layer>
+ <layer name="Capa de patrones 3" width="50" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+2YuQoDMQxE/dM5mhxNjiZHk6N0mSKQFIHk8zLutllHOB5ZC3owoGYH4bWEmRAcR5fYuoFQp4dbBY9/YfQwgsbQBJoS/LWYQXNoAS3btvKTe0+dWEFraANtiT08OvWz0OPVUyd20B46QMdCfwnvTv0h+J+gM3SBrgR/x3EcZ/jE1g1UwsJb17FHLPgm99ZtRcn9zr11HSdh8a6XwLzrnjfokzvzGnmD1j/NnXmNvEHrn+bOvEbeoJUhsTMerQyJnfGw/KVzZ33nSufO+s6Vzp31nSudO+s7Vzp3Q9q5bLR2LhvGzv0CwaOm2EAfAAA=
+  </data>
+ </layer>
+ <layer name="Capa de patrones 4" width="50" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3OMQ0AAAgDsPn3gU9EjISnVdAEAAAAAGjMdwAAADixdAXLgkAfAAA=
+  </data>
+ </layer>
+ <objectgroup name="events" width="50" height="40">
+  <object name="jugador" type="player" x="752" y="719">
+   <properties>
+    <property name="col" value="4"/>
+    <property name="fil" value="4"/>
+    <property name="image" value="chara.png"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

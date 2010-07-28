@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="8" height="30" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="config" tilewidth="32" tileheight="32">
+  <image source="config.png" trans="ff00ff"/>
+ </tileset>
+ <tileset firstgid="41" name="pueblo" tilewidth="32" tileheight="32">
+  <image source="pueblo.png" trans="ff00ff"/>
+ </tileset>
+ <layer name="tileset" width="8" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAAw3DA3cWAAAAwK+W7foLaWHZtrFay7ZtG0tbtbxs27Zt2/a69+4yBwKBLGY1m9kNNoc5zWVuQ8xjXvOZ3wIWtJCFLWJRi1ncEpa0lKUtY1nLWd4KVrSSla1iVatZ3RrWtJa1rWNdQ61nfcNsYLgNbWRjm9jUZja3hS1tZWvb2NZ2treDHe1kZ7vY1W52t4c97WVv+9jXfvZ3gAMd5GCHONRhDneEIx3laMc41nGOd4ITneRkpxjhVKc53RnONNIoZznbOUY713nOd4ELXeRiY1ziUpe53BWudJWrXeNa17neDW50k5vd4la3ud0d7nSXu93jXve53wMe9JCHPeJRj3ncE570lKc941nPed4LXvSSl73iVa953Rve9Ja3veNd73nfBz70kY994lOf+dwXvvSVr33jW9/53g9+9JOf/eJXv/ndH/70l7/941//GWsgDsY1yHjGN4EJTWRik5jUZCY3hSlNZWrTmNZ0pjeDGc3kf7AgrW/AAwAA
+  </data>
+ </layer>
+ <layer name="lock" width="8" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA8WRUQoAIAhDR7eQvrz/JftJsJoWRPRgEMhsKjBSwClEjBr47C1BrxNFObJMWR8lNel1wVtY3t080Q40+adivYlHkM/K/D6b+dmNWNaZk5lvtOO2/281PG9pVsADAAA=
+  </data>
+ </layer>
+ <layer name="priority" width="8" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA2NgwASCUEwMEELDgmj8kQqw+R9buAgTYY4IFOMCyPKiaBgWlyI4MLI7sGGYfmxupzR+RXGIwezGJk+OHcRibHoGOwAAYSdcZcADAAA=
+  </data>
+ </layer>
+</map>

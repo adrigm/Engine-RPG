@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="40" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="camp" tilewidth="32" tileheight="32">
+  <image source="../resources/graphics/tilesets/camp.png" trans="ff00ff"/>
+ </tileset>
+ <layer name="Layer 1" width="50" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+3DQQ0AAAwDofvWv+EJGSSsmqqqqqqqqqo+f3GTt89AHwAA
+  </data>
+ </layer>
+ <layer name="Layer 2" width="50" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA7VZOW9UMRB2vcsRLVmUiryOtBxNgIajCdBwNEhQIKCg5Cq4Cq6CAAUQ/i8z6I00+63nsF/4pE+blx3bM57PY/vtbinlAvEi8VJZxy3ibeId4t3K94zLxCvEq8Rrhs0e8TrxBvFmZx9eP9h+qb47bvR1hniWeI543ugbbaL5iOIUYD8bRnscv4bdsprDmo9og9gM/GsFto/GZ2Q0ENksHJ8ycxnBG190pnPI/syJA9haOjma8MGay426+T9gzDj+M+Jz4gviS+KrsprD2ciW9TCD5wGes2teA2PG8V8T3xDfEt8R30N71jnnJKNHscc4cJ6za14jivkD8SPxE/Ez8Ythl5lDjlfy5yGz5lmfWgMSs7WuvhL3id+I34k/oC9BzxxOXc9aAxKz1oTeN34SfxF/Ew+If4w+vTncGT+34TOrRQHnUddrrQF8Rk1sq7931LNoZApa1/OsrNZrrQF8Fk0sx3Y6jjI+ixaOjMwC89GjRQ2tAXxmTbD/89FHGfO08kG0wN9zni2dR/pv3cMXxd8/a/YnyvrZgaG1sDnS0nmr/jVqc7AAn44l2ljAvZxzZ+nc03+0r2fm4GRHGw+WzqfoP1MDTjW2YXvOIcYvsHSO/2/RtjcHy3XzsE2kOay9nn1Lnc7WABkvamNpTte0ecJeo3bGYmT3JL1Py3gRLM3pmrZI2OuxrfqJ+1ym/sh4EVrXasb+XqIfRia3Ml4ES3PWXGV0/TDoQ2DldqiMx9A5z67FKbX6abKPnrpt1TILXq2+H/BBog9GlFvvnssYxk8v795cPVZ8Qnw0Uv8v6sNCz1nOy7s3V5xb3Gtr8Pqone08nzxfe+77/xs9Z7mWvOM+Iui5u9b2ya3AJ8/X1porGNTftXzzOU3OazX96X0S381mz3ICr/621Fwr3xJDZh0dBmrxtKwbK9/afy+/h/GOtNW3GjL7u5ffbO57Yu1dN4zabxFefrO5n3IPRN96zypefqPcy9xlYpW7xtyxYWTv41vwnae9SJcyd1asej+VuwZ/9p5VWtByb5S5w1it39IEvWeVGvCcLfdL7x6P71ky94/au5kpZxUvlzrn2TYMff9AvXqYop2eOjD1nZSFKb9H9uQy2+YvboVNKkAfAAA=
+  </data>
+ </layer>
+ <layer name="Layer 3" width="50" height="40">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAA+1Yy04DMQzcT+ADeuAXoFwKvUC5ULjwuFFO0P//hXpFq0Yjp3biuPFKHWmkVtt1vR6Pk80w6LAg3hMfiEvlPefGTfL5LvObR+ITcUV8ds/IDy/ENfGV+NY5lxxGPW6J8+FfD/w+4p34QfwkfnXIUQPs/RIvRNIGe7/EC5G0wd6fghc4YO+XeIHzUkt4xz/Ae13Rxrc+b85Ls4pYJfER1np6e0kb37pOn/LSdUW8kvgpuOf9Jm72/IHfL5LPkfZZ3PP+Ev/23J6497LPOsJjrmpitt5necxtLmar+ZmDx/uAJuZVo/86wGNu99hXterTtG/SmOfa13gDvTLV50KvTOGcgQN6hZsBkkYRNET/cTNA0iiihtxckea0dD2CXiOkOS1dj6KXNPul65a1vEZLL/0t665GS8zbS3/LWq7REvOOeLar0RLzjniepdES8+5xttvCkxHOpKPM5FJg/Xt50toHWP9enrT2AdZf6u3aukn3WfugtP61dZPeq3J5aOtWOltq6ya9V+Xy8Jo7tf7RvFdx8Jo7WLcdiQj5W0AfAAA=
+  </data>
+ </layer>
+ <objectgroup name="Events" width="50" height="40">
+  <object name="jugador" type="player" x="718" y="495">
+   <properties>
+    <property name="col" value="4"/>
+    <property name="fil" value="4"/>
+    <property name="image" value="chara.png"/>
+   </properties>
+  </object>
+  <object name="nombre_evento" type="tipo_evento" x="451" y="226" width="80" height="73">
+   <properties>
+    <property name="grafico" value="chara.png"/>
+    <property name="id" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
